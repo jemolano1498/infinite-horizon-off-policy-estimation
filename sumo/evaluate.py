@@ -179,7 +179,7 @@ if __name__ == "__main__":
 	n_tl = (n-2)*(m-2)
 
 	num_trajectory = 250
-	truncaton_size = 400
+	truncate_size = 400
 	BP = 2
 
 	parser = argparse.ArgumentParser(description='evaluate SARS file for SUMO environment')
