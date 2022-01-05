@@ -7,12 +7,12 @@ import numpy as np
 from Density_Ratio_discrete import Density_Ratio_discrete, Density_Ratio_discounted
 from Q_learning import Q_learning
 from environment import random_walk_2d, taxi
-# import matplotlib
-# matplotlib.use('Agg')
-# import matplotlib.pyplot as plt
-# from matplotlib.backends.backend_pdf import PdfPages
-# import seaborn as sns
-# sns.set(style="white")
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+import seaborn as sns
+sns.set(style="white")
 
 
 def roll_out(state_num, env, policy, num_trajectory, truncate_size):
@@ -162,7 +162,7 @@ def Q_learning(env, num_trajectory, truncate_size, temperature = 2.0):
 
 	state = env.reset()
 	for k in range(20):
-		print 'Training for episode {}'.format(k)
+		print ('Training for episode {}'.format(k))
 		for i in range(50):
 			for j in range(5000):
 				action = agent.choose_action(state, temperature)
@@ -172,7 +172,7 @@ def Q_learning(env, num_trajectory, truncate_size, temperature = 2.0):
 		pi = agent.get_pi(temperature)
 		np.save('taxi-policy/pi{}.npy'.format(k), pi)
 		SAS, f, avr_reward = roll_out(n_state, env, pi, num_trajectory, truncate_size)
-		print 'Episode {} reward = {}'.format(k, avr_reward)
+		print ('Episode {} reward = {}'.format(k, avr_reward))
 		heat_map(length, f, env, 'heatmap/pi{}.pdf'.format(k))
 
 def heat_map(length, f, env, filename):
